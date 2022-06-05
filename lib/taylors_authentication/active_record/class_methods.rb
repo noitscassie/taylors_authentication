@@ -1,3 +1,4 @@
+
 module TaylorsAuthentication
   module ActiveRecord
     module ClassMethods
@@ -13,14 +14,14 @@ module TaylorsAuthentication
           return if auth_token.blank?
 
           find_by(
-            id: JsonWebToken.decode(auth_token),
+            id: ::TaylorsAuthentication::JsonWebToken.decode(auth_token),
           )
         end
       end
 
       def define_getter_method
         define_method(:auth_token) do
-          JsonWebToken.encode(id)
+          ::TaylorsAuthentication::JsonWebToken.encode(id)
         end
       end
     end
