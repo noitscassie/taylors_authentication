@@ -3,6 +3,14 @@
 require_relative "taylors_authentication/version"
 
 module TaylorsAuthentication
-  class Error < StandardError; end
-  # Your code goes here...
+  require 'active_support'
+  require 'taylors_authentication/active_record/active_record'
+  require 'taylors_authentication/active_record/class_methods'
+
+  mattr_accessor :secret_key
+  @@secret_key = []
+
+  def self.setup
+    yield self
+  end
 end
