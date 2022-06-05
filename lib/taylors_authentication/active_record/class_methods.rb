@@ -1,4 +1,3 @@
-
 module TaylorsAuthentication
   module ActiveRecord
     module ClassMethods

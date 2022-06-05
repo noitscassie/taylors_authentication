@@ -1,21 +1,19 @@
+require 'jwt'
+
 module TaylorsAuthentication
-  module JsonWebToken
-    extend ActiveSupport::Concern
+  class JsonWebToken
+    def self.encode(payload)
+      JWT.encode(
+        payload,
+        ::TaylorsAuthentication.secret_key,
+      )
+    end
 
-    class_methods do
-      def encode(payload)
-        JWT.encode(
-          payload,
-          ::TaylorsAuthentication.secret_key,
-        )
-      end
-
-      def decode(token)
-        JWT.decode(
-          token,
-          ::TaylorsAuthentication.secret_key,
-        ).first # first arg is the payload, second is the header
-      end
+    def self.decode(token)
+      JWT.decode(
+        token,
+        ::TaylorsAuthentication.secret_key,
+      ).first # first arg is the payload, second is the header
     end
   end
 end

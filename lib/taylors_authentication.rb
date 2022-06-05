@@ -6,6 +6,7 @@ module TaylorsAuthentication
   require 'active_support'
   require 'taylors_authentication/active_record/active_record'
   require 'taylors_authentication/active_record/class_methods'
+  require 'taylors_authentication/json_web_token'
 
   mattr_accessor :secret_key
   @@secret_key = []
